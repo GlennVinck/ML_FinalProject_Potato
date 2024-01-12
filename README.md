@@ -2,6 +2,8 @@
 
 [Live Link PotatAI](https://ml-final-project-potato.vercel.app/)
 
+[Link to Video Explanation](https://youtu.be/szX0NBm4gR4)
+
 ## How to use?
 
 ### 1. Surf to [PotatAI](https://ml-final-project-potato.vercel.app/)
