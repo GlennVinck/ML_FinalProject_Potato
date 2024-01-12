@@ -17,13 +17,11 @@
       accept="image/*"
       onchange="displaySelectedImage()"
     />
-
     <!-- Container for uploaded image -->
-    <img id="selected-image" style="max-width: 100%" alt="Selected Image" />
-
+    <img id="selected-image" style="max-width: 100%" alt="Your Image" />
     <button type="button" onclick="predictFromImage()">Predict</button>
-
     <div id="label-container"></div>
+    <div id="error-message" style="color: red"></div>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
     <script type="text/javascript">
@@ -62,12 +60,22 @@
       async function predictFromImage() {
         const inputElement = document.getElementById("image-upload");
         const file = inputElement.files[0];
+
+        if (!file) {
+          document.getElementById("error-message").innerText =
+            "Error: No image selected.";
+          return;
+        }
+
         const img = new Image();
 
         const reader = new FileReader();
         reader.onload = function (e) {
           img.src = e.target.result;
           img.onload = async function () {
+            // Clear any previous error message
+            document.getElementById("error-message").innerText = "";
+
             // Save the image data to session storage
             sessionStorage.setItem("uploadedImage", e.target.result);
 
@@ -82,9 +90,7 @@
           };
         };
 
-        if (file) {
-          reader.readAsDataURL(file);
-        }
+        reader.readAsDataURL(file);
 
         // Clear the file input value
         inputElement.value = "";
