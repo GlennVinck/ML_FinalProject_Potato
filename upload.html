@@ -94,7 +94,8 @@
               const classPrediction =
                 prediction[i].className +
                 ": " +
-                prediction[i].probability.toFixed(2);
+                (prediction[i].probability * 100).toFixed(2) +
+                "%";
               labelContainer.childNodes[i].innerHTML = classPrediction;
             }
           };
