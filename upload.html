@@ -43,6 +43,9 @@
         reader.onload = function (e) {
           img.src = e.target.result;
           img.onload = async function () {
+            // Save the image data to session storage
+            sessionStorage.setItem("uploadedImage", e.target.result);
+
             const prediction = await model.predict(img);
             for (let i = 0; i < maxPredictions; i++) {
               const classPrediction =
@@ -57,6 +60,9 @@
         if (file) {
           reader.readAsDataURL(file);
         }
+
+        // Clear the file input value
+        inputElement.value = "";
       }
 
       init();
