@@ -14,8 +14,7 @@
         </a>
       </div>
     </nav>
-    <div>
-      <h1>PotatAI</h1>
+    <div id="upload-container">
       <h2>Upload your image</h2>
     </div>
     <input
@@ -25,10 +24,13 @@
       onchange="displaySelectedImage()"
     />
     <!-- Container for uploaded image -->
-    <img id="selected-image" style="max-width: 100%" alt="Your Image" />
-    <button type="button" onclick="predictFromImage()">Predict</button>
+    <img id="selected-image" alt="" />
     <div id="label-container"></div>
     <div id="error-message" style="color: red"></div>
+
+    <span class="button" type="button" onclick="predictFromImage()"
+      >Predict</span
+    >
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
     <script type="text/javascript">

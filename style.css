@@ -65,9 +65,28 @@ h1 {
   text-decoration: none;
   font-weight: 500;
   margin-top: 32px;
+  cursor: pointer;
 }
 
 p {
   font-weight: 400;
   color: rgb(151, 151, 151);
+}
+
+#upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 160px;
+}
+
+#selected-image {
+  max-width: 480px;
+  margin: 32px;
+  border-radius: 15px;
+}
+
+#label-container {
+  line-height: 24px;
 }
