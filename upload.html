@@ -11,9 +11,18 @@
       <h1>PotatoAI</h1>
       <h2>Upload your image</h2>
     </div>
-    <input type="file" id="image-upload" accept="image/*" />
+    <input
+      type="file"
+      id="image-upload"
+      accept="image/*"
+      onchange="displaySelectedImage()"
+    />
+
+    <!-- Container for uploaded image -->
+    <img id="selected-image" style="max-width: 100%" alt="Selected Image" />
 
     <button type="button" onclick="predictFromImage()">Predict</button>
+
     <div id="label-container"></div>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
@@ -31,6 +40,22 @@
         labelContainer = document.getElementById("label-container");
         for (let i = 0; i < maxPredictions; i++) {
           labelContainer.appendChild(document.createElement("div"));
+        }
+      }
+
+      function displaySelectedImage() {
+        const inputElement = document.getElementById("image-upload");
+        const file = inputElement.files[0];
+        const img = new Image();
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          img.src = e.target.result;
+          document.getElementById("selected-image").src = e.target.result;
+        };
+
+        if (file) {
+          reader.readAsDataURL(file);
         }
       }
 
